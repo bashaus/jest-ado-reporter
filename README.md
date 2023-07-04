@@ -1,6 +1,6 @@
 # jest-ado-reporter
 
-Reports jest test suite progress information to the pipeline step Azure DevOps. Useful for displaying progress when you have a lot of tests to run.
+Reports jest test suite progress information to the pipeline step in Azure DevOps. Useful for displaying progress when you have a lot of tests to run.
 
 &nbsp;
 
@@ -13,7 +13,7 @@ Reports jest test suite progress information to the pipeline step Azure DevOps. 
 Add the dependency to your application.
 
 ```bash
-npm i --dev jest-ado-reporter
+npm i --save-dev jest-ado-reporter
 # - or -
 yarn add -D jest-ado-reporter
 ```
@@ -38,7 +38,7 @@ export default config;
 
 Type of `boolean`.
 
-By default, the console will only output the required logging commands when running in Azure DevOps. You can debug this locally by setting the `enabled` option to `true`.
+The reporter will only output logging commands when running in a Azure DevOps pipeline. If you would like to force this locally for debugging purposes, you can set the `enabled` option to `true`.
 
 Example:
 
@@ -46,7 +46,7 @@ Example:
 ['jest-ado-reporter', { enabled: true }],
 ```
 
-Output (when used in parallel with `default`):
+Output locally, when used in parallel with the `default` reporter:
 
 ```bash
 $ jest
