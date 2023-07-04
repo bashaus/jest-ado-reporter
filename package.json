@@ -1,6 +1,11 @@
 {
   "name": "jest-ado-reporter",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "description": "Reports jest test suite progress information to the pipeline step in Azure DevOps.",
+  "keywords": [
+    "jest",
+    "reporter"
+  ],
   "homepage": "https://github.com/bashaus/jest-ado-reporter",
   "repository": {
     "type": "git",
