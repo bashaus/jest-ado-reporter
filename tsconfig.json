@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "declaration": false,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
@@ -11,6 +10,7 @@
     "skipLibCheck": true,
     "sourceMap": false,
     "target": "es2015",
-    "types": ["node"]
-  }
+    "types": ["node", "jest"]
+  },
+  "include": ["src/**/*.ts"]
 }

@@ -2,13 +2,13 @@ import AdoJestReporter from "./reporter";
 import { AggregatedResultTestSuitePartial } from "./types/AggregatedResultTestSuitePartial";
 
 describe("JestAdoReporter", () => {
-  it("should show an interim percentage", () => {
-    const reporter = new AdoJestReporter({}, { enabled: true });
-    const spySetPercentage = jest.spyOn(reporter, "_setPercentage");
-    spySetPercentage.mockImplementation();
+  it("should show an interim percent", () => {
+    const reporter = new AdoJestReporter({}, { enabled: false });
+    const spySetProgress = jest.spyOn(reporter, "_setProgress");
+    spySetProgress.mockImplementation();
 
-    reporter.onRunStart();
-    expect(spySetPercentage).toHaveBeenCalledWith(0);
+    reporter._init();
+    expect(spySetProgress).toHaveBeenCalledWith(1);
 
     const result: AggregatedResultTestSuitePartial = {
       numFailedTestSuites: 1,
@@ -19,21 +19,22 @@ describe("JestAdoReporter", () => {
     };
 
     reporter.onTestFileResult(null, null, result);
-    expect(spySetPercentage).toHaveBeenCalledWith(50);
-  });
-
-  it("should set 100% on complete", () => {
-    const reporter = new AdoJestReporter({}, { enabled: true });
-    const spySetPercentage = jest.spyOn(reporter, "_setPercentage");
-    spySetPercentage.mockImplementation();
-
-    reporter.onRunComplete();
-    expect(spySetPercentage).toHaveBeenCalledWith(100);
+    expect(spySetProgress).toHaveBeenCalledWith(50);
   });
 
   it("should do nothing for getLastError", () => {
-    const reporter = new AdoJestReporter({}, { enabled: true });
+    const reporter = new AdoJestReporter({}, { enabled: false });
     expect(reporter.getLastError()).toBeUndefined();
+  });
+
+  it("should do nothing for onRunStart", () => {
+    const reporter = new AdoJestReporter({}, { enabled: false });
+    expect(reporter.onRunStart()).toBeUndefined();
+  });
+
+  it("should do nothing for onRunComplete", () => {
+    const reporter = new AdoJestReporter({}, { enabled: false });
+    expect(reporter.onRunComplete()).toBeUndefined();
   });
 
   describe("enabled", () => {
@@ -42,7 +43,7 @@ describe("JestAdoReporter", () => {
       const spyConsoleLog = jest.spyOn(global.console, "log");
       spyConsoleLog.mockImplementation();
 
-      reporter._setPercentage(10);
+      reporter._setProgress(10);
       expect(spyConsoleLog).not.toHaveBeenCalled();
     });
 
@@ -51,7 +52,7 @@ describe("JestAdoReporter", () => {
       const spyConsoleLog = jest.spyOn(global.console, "log");
       spyConsoleLog.mockImplementation();
 
-      reporter._setPercentage(10);
+      reporter._setProgress(10);
       expect(spyConsoleLog).toHaveBeenCalledWith(
         "##vso[task.setprogress value=10;]jest"
       );

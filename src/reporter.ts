@@ -1,9 +1,10 @@
 import type { Reporter } from "@jest/reporters";
 import type { Config } from "jest";
 
-import { calculatePercentage } from "./helpers/AggregatedResult";
+import { calculatePercent } from "./helpers/AggregatedResult";
 import type { AdoJestReporterOptions } from "./types/AdoJestReporterOptions";
 import { AggregatedResultTestSuitePartial } from "./types/AggregatedResultTestSuitePartial";
+import { lerp } from "./helpers/Math";
 
 export default class AdoJestReporter implements Reporter {
   private _name = "jest";
@@ -13,20 +14,32 @@ export default class AdoJestReporter implements Reporter {
     if ("enabled" in options) {
       this._enabled = options.enabled;
     }
+
+    this._init();
+  }
+
+  /**
+   * When 0 is passed, the progress indication turns to the clock
+   * Initialise the progress at 1%, to avoid falling back
+   */
+  _init() {
+    this._setProgress(1);
   }
 
   /**
    * Writes a console log that ADO can read to update the state
-   * @param percentage number from 0 to 100
+   * @param percent number from 0 to 100
    */
-  _setPercentage(percentage: number) {
+  _setProgress(progress: number) {
+    const value = Math.round(progress);
+
     if (this._enabled) {
-      console.log(`##vso[task.setprogress value=${percentage};]${this._name}`);
+      console.log(`##vso[task.setprogress value=${value};]${this._name}`);
     }
   }
 
   onRunStart() {
-    this._setPercentage(0);
+    /* no-op */
   }
 
   onTestFileResult(
@@ -34,14 +47,16 @@ export default class AdoJestReporter implements Reporter {
     _testResult,
     result: AggregatedResultTestSuitePartial
   ) {
-    this._setPercentage(calculatePercentage(result));
+    const percent = calculatePercent(result);
+    const value = lerp(1, 99, percent);
+    this._setProgress(value);
   }
 
   onRunComplete() {
-    this._setPercentage(100);
+    /* no-op */
   }
 
   getLastError() {
-    return undefined; /* noop */
+    /* no-op */
   }
 }

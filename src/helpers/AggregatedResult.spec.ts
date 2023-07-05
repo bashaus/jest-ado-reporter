@@ -1,7 +1,7 @@
 import { AggregatedResultTestSuitePartial } from "../types/AggregatedResultTestSuitePartial";
-import { calculatePercentage } from "./AggregatedResult";
+import { calculatePercent } from "./AggregatedResult";
 
-describe("calculatePercentage", () => {
+describe("calculatePercent", () => {
   it("should return 100% when there are zero tests", () => {
     const aggregatedResult: AggregatedResultTestSuitePartial = {
       numFailedTestSuites: 0,
@@ -11,7 +11,7 @@ describe("calculatePercentage", () => {
       numTotalTestSuites: 0,
     };
 
-    expect(calculatePercentage(aggregatedResult)).toBe(100);
+    expect(calculatePercent(aggregatedResult)).toBe(1);
   });
 
   it("should calculate from all test suite aggregations", () => {
@@ -23,7 +23,7 @@ describe("calculatePercentage", () => {
       numTotalTestSuites: 4,
     };
 
-    expect(calculatePercentage(aggregatedResult)).toBe(100);
+    expect(calculatePercent(aggregatedResult)).toBe(1);
   });
 
   it("should calculate incomplete tests", () => {
@@ -35,10 +35,10 @@ describe("calculatePercentage", () => {
       numTotalTestSuites: 20,
     };
 
-    expect(calculatePercentage(aggregatedResult)).toBe(50);
+    expect(calculatePercent(aggregatedResult)).toBe(0.5);
   });
 
-  it("should round down the percentage", () => {
+  it("should round down the percent", () => {
     const aggregatedResult: AggregatedResultTestSuitePartial = {
       numFailedTestSuites: 2,
       numPassedTestSuites: 2,
@@ -47,6 +47,6 @@ describe("calculatePercentage", () => {
       numTotalTestSuites: 9,
     };
 
-    expect(calculatePercentage(aggregatedResult)).toBe(66);
+    expect(calculatePercent(aggregatedResult)).toBe(2 / 3);
   });
 });

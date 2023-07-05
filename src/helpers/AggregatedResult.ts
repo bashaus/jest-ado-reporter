@@ -1,8 +1,6 @@
 import { AggregatedResultTestSuitePartial } from "../types/AggregatedResultTestSuitePartial";
 
-export const calculatePercentage = (
-  result: AggregatedResultTestSuitePartial
-) => {
+export const calculatePercent = (result: AggregatedResultTestSuitePartial) => {
   const numTotalTestSuites = result.numTotalTestSuites;
 
   /**
@@ -10,7 +8,7 @@ export const calculatePercentage = (
    * we will mark the suite as completed
    */
   if (numTotalTestSuites === 0) {
-    return 100;
+    return 1;
   }
 
   const numCompleteTestSuites =
@@ -19,5 +17,5 @@ export const calculatePercentage = (
     result.numPendingTestSuites +
     result.numRuntimeErrorTestSuites;
 
-  return Math.floor((numCompleteTestSuites / numTotalTestSuites) * 100);
+  return numCompleteTestSuites / numTotalTestSuites;
 };
