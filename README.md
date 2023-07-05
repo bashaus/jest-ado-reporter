@@ -50,24 +50,24 @@ Output locally, when used in parallel with the `default` reporter:
 
 ```bash
 $ jest
-##vso[task.setprogress value=0;]jest
+##vso[task.setprogress value=1;]jest
  PASS   test5.spec.tsx
-##vso[task.setprogress value=16;]jest
+##vso[task.setprogress value=17;]jest
  PASS   test2.spec.tsx
-##vso[task.setprogress value=33;]jest
+##vso[task.setprogress value=34;]jest
  PASS   test4.spec.tsx
  PASS   test3.spec.ts
 ##vso[task.setprogress value=50;]jest
-##vso[task.setprogress value=66;]jest
+##vso[task.setprogress value=67;]jest
  PASS   test1.spec.ts
-##vso[task.setprogress value=83;]jest
+##vso[task.setprogress value=84;]jest
  PASS   test6.spec.tsx
-##vso[task.setprogress value=100;]jest
+##vso[task.setprogress value=99;]jest
 
 Test Suites: 6 passed, 6 total
 Tests:       18 passed, 18 total
 Snapshots:   0 total
 Time:        5.617 s
-##vso[task.setprogress value=100;]jest
+Ran all test suites.
 ✨  Done in 9.97s.
 ```
