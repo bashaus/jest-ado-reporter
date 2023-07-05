@@ -1,6 +1,6 @@
 {
   "name": "jest-ado-reporter",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Reports jest test suite progress information to the pipeline step in Azure DevOps.",
   "keywords": [
     "jest",
