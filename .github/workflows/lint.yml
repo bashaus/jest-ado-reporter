@@ -1,5 +1,5 @@
 ---
-name: Lint
+name: lint
 
 on:
   push:
@@ -16,14 +16,14 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
         with:
-          node-version: "18.x"
-          cache: "yarn"
+          node-version: "22.x"
+          cache: "npm"
 
-      - name: yarn
-        run: yarn install --frozen-lockfile
+      - name: install
+        run: npm ci
 
       - name: prettier
-        run: yarn prettier --check .
+        run: npx prettier --check .
 
       - name: lint
-        run: yarn eslint .
+        run: npx eslint .
