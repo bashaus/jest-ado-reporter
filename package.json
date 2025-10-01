@@ -12,19 +12,19 @@
     "url": "https://github.com/bashaus/jest-ado-reporter.git"
   },
   "license": "MIT",
+  "author": "Bashkim Isai",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "./dist/"
+    "./dist/*"
   ],
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist/",
     "lint": "eslint .",
-    "prepare": "husky || true",
+    "prepare": "husky",
     "test": "jest"
   },
-  "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "20.1.0",
     "@commitlint/config-conventional": "20.0.0",
