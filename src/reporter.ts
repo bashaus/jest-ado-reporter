@@ -8,7 +8,7 @@ import { lerp } from "./helpers/Math";
 
 export default class AdoJestReporter implements Reporter {
   private _name = "jest";
-  private _enabled = process.env.TF_BUILD !== undefined;
+  private _enabled = process.env["TF_BUILD"] !== undefined;
 
   constructor(_config: Config, options: AdoJestReporterOptions) {
     if ("enabled" in options) {
