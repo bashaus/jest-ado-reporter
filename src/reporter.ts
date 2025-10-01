@@ -45,7 +45,7 @@ export default class AdoJestReporter implements Reporter {
   onTestFileResult(
     _test,
     _testResult,
-    result: AggregatedResultTestSuitePartial
+    result: AggregatedResultTestSuitePartial,
   ) {
     const percent = calculatePercent(result);
     const value = lerp(1, 99, percent);

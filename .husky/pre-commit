@@ -1,5 +1,5 @@
 #!/bin/sh
 npx sort-package-json
-npx pretty-quick --staged
+npx prettier --check .
 npx eslint .
 npm test
