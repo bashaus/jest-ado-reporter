@@ -1,5 +1,5 @@
 import AdoJestReporter from "./reporter";
-import { AggregatedResultTestSuitePartial } from "./types/AggregatedResultTestSuitePartial";
+import type { AggregatedResultTestSuitePartial } from "./helpers/aggregated-result";
 
 describe("JestAdoReporter", () => {
   it("should show an interim percent", () => {

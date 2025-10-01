@@ -1,4 +1,4 @@
 import JestAdoReporter from "./reporter";
 
-export type { AdoJestReporterOptions } from "./types/AdoJestReporterOptions";
+export type { AdoJestReporterOptions } from "./reporter";
 export default JestAdoReporter;
