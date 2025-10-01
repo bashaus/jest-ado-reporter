@@ -54,7 +54,7 @@ describe("JestAdoReporter", () => {
 
       reporter._setProgress(10);
       expect(spyConsoleLog).toHaveBeenCalledWith(
-        "##vso[task.setprogress value=10;]jest"
+        "##vso[task.setprogress value=10;]jest",
       );
     });
   });
