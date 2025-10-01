@@ -1,5 +1,5 @@
 #!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-npx pretty-quick --staged
-npx lint-staged
+npx sort-package-json
+npx prettier --check .
+npm run lint
+npm test
