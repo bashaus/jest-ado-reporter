@@ -1,5 +1,5 @@
 ---
-name: Publish
+name: publish
 
 on:
   release:
@@ -18,14 +18,14 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: "18.x"
-          cache: "yarn"
+          cache: "npm"
           registry-url: "https://registry.npmjs.org"
 
-      - name: yarn
-        run: yarn install --frozen-lockfile
+      - name: install
+        run: npm ci
 
       - name: build
-        run: yarn build
+        run: npm run build
 
       - name: publish
         run: npm publish --access public --provenance
