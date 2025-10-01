@@ -1,4 +1,4 @@
 #!/bin/sh
 npx pretty-quick --staged
-npx lint-staged
+npx eslint .
 npm test
