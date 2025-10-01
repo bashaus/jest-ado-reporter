@@ -1,10 +1,10 @@
 import type { Reporter, Test, TestResult } from "@jest/reporters";
 import type { Config } from "jest";
 
-import { calculatePercent } from "./helpers/AggregatedResult";
+import { calculatePercent } from "./helpers/aggregated-result";
 import type { AdoJestReporterOptions } from "./types/AdoJestReporterOptions";
 import { AggregatedResultTestSuitePartial } from "./types/AggregatedResultTestSuitePartial";
-import { lerp } from "./helpers/Math";
+import { lerp } from "./helpers/math";
 
 export default class AdoJestReporter implements Reporter {
   private _name = "jest";

@@ -1,5 +1,5 @@
 import { AggregatedResultTestSuitePartial } from "../types/AggregatedResultTestSuitePartial";
-import { calculatePercent } from "./AggregatedResult";
+import { calculatePercent } from "./aggregated-result";
 
 describe("calculatePercent", () => {
   it("should return 100% when there are zero tests", () => {

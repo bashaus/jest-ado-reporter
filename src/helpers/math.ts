@@ -1,4 +1,4 @@
-import { LerpMinMaxMismatchError } from "./Math.errors";
+import { LerpMinMaxMismatchError } from "./math.errors";
 
 /**
  * LERP: Linear interpolation

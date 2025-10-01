@@ -1,5 +1,5 @@
-import { lerp } from "./Math";
-import { LerpMinMaxMismatchError } from "./Math.errors";
+import { lerp } from "./math";
+import { LerpMinMaxMismatchError } from "./math.errors";
 
 describe("lerp", () => {
   it("should calculate percentage", () => {
