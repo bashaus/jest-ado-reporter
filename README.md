@@ -1,5 +1,8 @@
 # jest-ado-reporter
 
+[![github actions build][img:gh-build]][url:gh-build]
+[![code coverage][img:codecov]][url:codecov]
+
 Reports jest test suite progress information to the pipeline step in Azure DevOps. Useful for displaying progress when you have a lot of tests to run.
 
 &nbsp;
@@ -71,3 +74,8 @@ Time:        5.617 s
 Ran all test suites.
 ✨  Done in 9.97s.
 ```
+
+[img:codecov]: https://codecov.io/gh/bashaus/jest-ado-reporter/graph/badge.svg?token=TCOLK6IK7J
+[url:codecov]: https://codecov.io/gh/bashaus/jest-ado-reporter
+[img:gh-build]: https://github.com/bashaus/jest-ado-reporter/actions/workflows/build.yml/badge.svg
+[url:gh-build]: https://github.com/bashaus/jest-ado-reporter/actions/workflows/build.yml
