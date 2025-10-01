@@ -23,9 +23,6 @@ jobs:
       - name: install
         run: npm ci
 
-      - name: Rebuild @swc/core
-        run: npm rebuild @swc/core
-
       - name: test
         run: npm test -- --coverage --reporters=jest-junit
         env:
