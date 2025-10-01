@@ -1,7 +1,7 @@
-import { AggregatedResultTestSuitePartial } from "../types/AggregatedResultTestSuitePartial";
+import type { AggregatedResultTestSuitePartial } from "./aggregated-result";
 import { calculatePercent } from "./aggregated-result";
 
-describe("calculatePercent", () => {
+describe("calculatePercent()", () => {
   it("should return 100% when there are zero tests", () => {
     const aggregatedResult: AggregatedResultTestSuitePartial = {
       numFailedTestSuites: 0,

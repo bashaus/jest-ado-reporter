@@ -1,6 +1,15 @@
-import { AggregatedResultTestSuitePartial } from "../types/AggregatedResultTestSuitePartial";
+import type { AggregatedResult } from "@jest/test-result";
 
-export const calculatePercent = (result: AggregatedResultTestSuitePartial) => {
+export type AggregatedResultTestSuitePartial = Pick<
+  AggregatedResult,
+  | "numTotalTestSuites"
+  | "numFailedTestSuites"
+  | "numPassedTestSuites"
+  | "numPendingTestSuites"
+  | "numRuntimeErrorTestSuites"
+>;
+
+export function calculatePercent(result: AggregatedResultTestSuitePartial) {
   const numTotalTestSuites = result.numTotalTestSuites;
 
   /**
@@ -18,4 +27,4 @@ export const calculatePercent = (result: AggregatedResultTestSuitePartial) => {
     result.numRuntimeErrorTestSuites;
 
   return numCompleteTestSuites / numTotalTestSuites;
-};
+}
