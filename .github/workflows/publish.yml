@@ -1,31 +1,30 @@
 ---
-name: Publish
+name: publish
 
 on:
   release:
     types:
-      - created
+      - published
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-
     permissions:
+      contents: read
       id-token: write
-
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          node-version: "18.x"
-          cache: "yarn"
+          node-version: "24.x"
+          cache: "npm"
           registry-url: "https://registry.npmjs.org"
 
-      - name: yarn
-        run: yarn install --frozen-lockfile
+      - name: install
+        run: npm ci
 
       - name: build
-        run: yarn build
+        run: npm run build
 
       - name: publish
         run: npm publish --access public --provenance

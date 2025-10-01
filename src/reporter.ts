@@ -1,4 +1,4 @@
-import type { Reporter } from "@jest/reporters";
+import type { Reporter, Test, TestResult } from "@jest/reporters";
 import type { Config } from "jest";
 
 import { calculatePercent } from "./helpers/AggregatedResult";
@@ -8,7 +8,7 @@ import { lerp } from "./helpers/Math";
 
 export default class AdoJestReporter implements Reporter {
   private _name = "jest";
-  private _enabled = process.env.TF_BUILD !== undefined;
+  private _enabled = process.env["TF_BUILD"] !== undefined;
 
   constructor(_config: Config, options: AdoJestReporterOptions) {
     if ("enabled" in options) {
@@ -43,9 +43,9 @@ export default class AdoJestReporter implements Reporter {
   }
 
   onTestFileResult(
-    _test,
-    _testResult,
-    result: AggregatedResultTestSuitePartial
+    _test: Test,
+    _testResult: TestResult,
+    result: AggregatedResultTestSuitePartial,
   ) {
     const percent = calculatePercent(result);
     const value = lerp(1, 99, percent);

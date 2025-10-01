@@ -1,16 +1,21 @@
 {
   "compilerOptions": {
-    "emitDecoratorMetadata": true,
+    "declaration": true,
     "esModuleInterop": true,
-    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
     "lib": ["es2017"],
     "module": "commonjs",
     "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
-    "sourceMap": false,
-    "target": "es2015",
-    "types": ["node", "jest"]
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2015"
   },
-  "include": ["src/**/*.ts"]
+  "include": ["./src/**/*.ts"],
+  "exclude": ["node_modules"]
 }

@@ -1,4 +1,5 @@
 import { lerp } from "./Math";
+import { LerpMinMaxMismatchError } from "./Math.errors";
 
 describe("lerp", () => {
   it("should calculate percentage", () => {
@@ -7,6 +8,6 @@ describe("lerp", () => {
   });
 
   it("should throw an error when max is less than min", () => {
-    expect(() => lerp(50, 0, 0.5)).toThrowError();
+    expect(() => lerp(50, 0, 0.5)).toThrow(LerpMinMaxMismatchError);
   });
 });
