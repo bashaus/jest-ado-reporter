@@ -1,4 +1,5 @@
 #!/bin/sh
+npx sort-package-json
 npx pretty-quick --staged
 npx lint-staged
 npm test
