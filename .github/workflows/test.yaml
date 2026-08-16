@@ -1,0 +1,46 @@
+---
+name: test
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: ".nvmrc"
+          cache: npm
+
+      - name: install
+        run: npm ci
+
+      - name: build
+        run: npm run build
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist
+
+      - name: test
+        run: npm test -- --coverage
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: coverage
+          path: coverage
+
+      - name: codecov coverage
+        uses: codecov/codecov-action@v7
+        with:
+          directory: coverage
+          files: ./coverage/lcov.info
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

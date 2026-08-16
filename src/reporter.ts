@@ -6,7 +6,7 @@ import type { AggregatedResultTestSuitePartial } from "./helpers/aggregated-resu
 import { lerp } from "./helpers/math";
 
 export type AdoJestReporterOptions = {
-  enabled: boolean;
+  enabled?: boolean;
 };
 
 export default class AdoJestReporter implements Reporter {
@@ -14,7 +14,7 @@ export default class AdoJestReporter implements Reporter {
   private _enabled = process.env["TF_BUILD"] !== undefined;
 
   constructor(_config: Config, options: AdoJestReporterOptions) {
-    if ("enabled" in options) {
+    if (options.enabled !== undefined) {
       this._enabled = options.enabled;
     }
 
@@ -46,8 +46,8 @@ export default class AdoJestReporter implements Reporter {
   }
 
   onTestFileResult(
-    _test: Test,
-    _testResult: TestResult,
+    _test: Test | null,
+    _testResult: TestResult | null,
     result: AggregatedResultTestSuitePartial,
   ) {
     const percent = calculatePercent(result);

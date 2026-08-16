@@ -77,5 +77,5 @@ Ran all test suites.
 
 [img:codecov]: https://codecov.io/gh/bashaus/jest-ado-reporter/graph/badge.svg?token=TCOLK6IK7J
 [url:codecov]: https://codecov.io/gh/bashaus/jest-ado-reporter
-[img:gh-build]: https://github.com/bashaus/jest-ado-reporter/actions/workflows/build.yml/badge.svg
-[url:gh-build]: https://github.com/bashaus/jest-ado-reporter/actions/workflows/build.yml
+[img:gh-build]: https://github.com/bashaus/jest-ado-reporter/actions/workflows/test.yaml/badge.svg
+[url:gh-build]: https://github.com/bashaus/jest-ado-reporter/actions/workflows/test.yaml

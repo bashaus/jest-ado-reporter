@@ -4,8 +4,8 @@ import type { AggregatedResultTestSuitePartial } from "./helpers/aggregated-resu
 describe("JestAdoReporter", () => {
   it("should show an interim percent", () => {
     const reporter = new AdoJestReporter({}, { enabled: false });
-    const spySetProgress = jest.spyOn(reporter, "_setProgress");
-    spySetProgress.mockImplementation();
+    const spySetProgress = vi.spyOn(reporter, "_setProgress");
+    spySetProgress.mockImplementation(() => {});
 
     reporter._init();
     expect(spySetProgress).toHaveBeenCalledWith(1);
@@ -40,8 +40,8 @@ describe("JestAdoReporter", () => {
   describe("enabled", () => {
     it("should not console log when false", () => {
       const reporter = new AdoJestReporter({}, { enabled: false });
-      const spyConsoleLog = jest.spyOn(global.console, "log");
-      spyConsoleLog.mockImplementation();
+      const spyConsoleLog = vi.spyOn(global.console, "log");
+      spyConsoleLog.mockImplementation(() => {});
 
       reporter._setProgress(10);
       expect(spyConsoleLog).not.toHaveBeenCalled();
@@ -49,13 +49,22 @@ describe("JestAdoReporter", () => {
 
     it("should console log when true", () => {
       const reporter = new AdoJestReporter({}, { enabled: true });
-      const spyConsoleLog = jest.spyOn(global.console, "log");
-      spyConsoleLog.mockImplementation();
+      const spyConsoleLog = vi.spyOn(global.console, "log");
+      spyConsoleLog.mockImplementation(() => {});
 
       reporter._setProgress(10);
       expect(spyConsoleLog).toHaveBeenCalledWith(
         "##vso[task.setprogress value=10;]jest",
       );
+    });
+
+    it("should use TF_BUILD env var when enabled is undefined", () => {
+      const reporter = new AdoJestReporter({}, {});
+      const spySetProgress = vi.spyOn(reporter, "_setProgress");
+      spySetProgress.mockImplementation(() => {});
+
+      reporter._init();
+      expect(spySetProgress).toHaveBeenCalledWith(1);
     });
   });
 });
